@@ -6,7 +6,7 @@ const wineSchema = mongoose.Schema({
     name: { type: String, required: true },
     type:{ type: String, required: true },
     modle: Number,
-    imgUrl: { type: String,default: "http://localhost:4000/wine/pic1.jpg" },
+    imgUrl:  String,
     isLocallyMade:{type: Boolean ,default:false},
     publishDate: { type: Date, default: Date.now() }
 });
