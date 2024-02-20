@@ -21,6 +21,18 @@ export const getAllwines = async (req, res) => {
         res.status(400).send("לא ניתן לקבל את כל היינות" + err.message)
     }
 }
+export const getCountPages = async (req, res) => {
+    let { itemsPerPage = 5 } = req.query;
+    try {
+        let count = await Product.find({}).count();
+        let numPages = count / itemsPerPage;
+        res.json(numPages).status(200)
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send("an error in getting num pages")
+    }
+}
 
 //לך המשועממת ניתן להוסיף WINEBTWEEN
 export const getwineById = async (req, res) => {
