@@ -12,7 +12,7 @@ connectToDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static('images'))
 
 app.use("/api/wines", wineRouter);
 app.use("/api/user", userRouter);
