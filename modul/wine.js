@@ -6,6 +6,7 @@ const wineSchema = mongoose.Schema({
     name: { type: String, required: true },
     type:{ type: String, required: true },
     modle: Number,
+    price: Number,
     imgUrl:  String,
     isLocallyMade:{type: Boolean ,default:false},
     publishDate: { type: Date, default: Date.now() }
@@ -19,6 +20,7 @@ export const wineValidator = (wineToValidate) => {
     name: Joi.string().required(),
     type: Joi.string().allow('dry wine','Semi-dry wine','sparkling wine','sweet wine','vodka','Whiskey').required(),
     modle: Joi.number(),
+    price: Joi.number(),
     isLocallyMade: Joi.boolean(),
     publishDate: Joi.date(),
   }).unknown();
