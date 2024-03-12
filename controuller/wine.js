@@ -14,7 +14,7 @@ export const getAllwines = async (req, res) => {
         allwines = await Wine.find(serachObject)
             .skip((page - 1) * perPage)
             .limit(perPage)
-            .sort({"name":1})
+            .sort({ "name": 1 })
         res.json(allwines)
     }
     catch (err) {
@@ -36,7 +36,7 @@ export const getCountPages = async (req, res) => {
 
 //לך המשועממת ניתן להוסיף WINEBTWEEN
 export const getwineById = async (req, res) => {
-    
+
     try {
         if (!mongoose.isValidObjectId(req.params.id))
             return res.status(400).send("קוד אינו תקין")
@@ -67,7 +67,7 @@ export const deletewine = async (req, res) => {
 export const addwine = async (req, res) => {
 
 
-    let { name, type, isLocallyMade, publishDate ,imgUrl} = req.body;
+    let { name, company, type, modle, price, isLocallyMade, publishDate, imgUrl } = req.body;
     let validate = wineValidator(req.body);
     if (validate.error)
         return res.status(400).send(validate.error[0])
@@ -77,7 +77,7 @@ export const addwine = async (req, res) => {
         let samewines = await Wine.find({ name, type });
         if (samewines.length > 0)
             return res.status(409).send("כבר קיים יין בשם כזה עם אות סוג ")
-        let newwine = await Wine.create({ name, type,imgUrl, isLocallyMade: isLocallyMade || true, publishDate })
+        let newwine = await Wine.create({ name, type, imgUrl, price, modle, company, isLocallyMade: isLocallyMade || true, publishDate })
         return res.status(201).json(newwine)
     }
     catch (err) {
@@ -99,7 +99,10 @@ export const updatewine = async (req, res) => {
         if (!wineToUpdate)
             return res.status(404).send("לא נמצא יין עם קוד כזה")
         wineToUpdate.name = req.body.name || wineToUpdate.name;
+        wineToUpdate.company = req.body.company || wineToUpdate.company;
         wineToUpdate.type = req.body.type || wineToUpdate.type;
+        wineToUpdate.modle = req.body.modle || wineToUpdate.modle;
+        wineToUpdate.price = req.body.price || wineToUpdate.price;
         wineToUpdate.publishDate = req.body.publishDate || wineToUpdate.publishDate;
         wineToUpdate.isLocallyMade = req.body.isLocallyMade || wineToUpdate.isLocallyMade;
 
