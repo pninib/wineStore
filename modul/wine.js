@@ -11,6 +11,7 @@ const wineSchema = mongoose.Schema({
   imgUrl: String,
   isLocallyMade: { type: Boolean, default: false },
   publishDate: { type: Date, default: Date.now() }
+
 });
 export const Wine = mongoose.model("wines", wineSchema);//מקשר בין הקולקשן
 

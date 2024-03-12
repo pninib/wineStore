@@ -65,7 +65,9 @@ export const deletewine = async (req, res) => {
 
 
 export const addwine = async (req, res) => {
-    let { name, type, isLocallyMade, publishDate,imgUrl} = req.body;
+
+
+    let { name, type, isLocallyMade, publishDate ,imgUrl} = req.body;
     let validate = wineValidator(req.body);
     if (validate.error)
         return res.status(400).send(validate.error[0])
