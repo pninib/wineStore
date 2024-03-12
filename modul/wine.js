@@ -22,7 +22,7 @@ export const wineValidator = (wineToValidate) => {
   const wineJoi = Joi.object({
     name: Joi.string().required(),
     company: Joi.string(),
-    type: Joi.string().allow('יבש', 'חצי יבש', 'מבעבע', 'מתוק', 'וודקה', 'וויסקי', 'רוזה').required(),
+    type: Joi.string().allow('יבש', 'חצי יבש', 'מבעבע', 'מתוק', 'וודקה', 'וויסקי', 'רוזה','קינוח','לבן').required(),
     modle: Joi.number(),
     price: Joi.number(),
     isLocallyMade: Joi.boolean(),
