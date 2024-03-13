@@ -67,7 +67,7 @@ export const deletewine = async (req, res) => {
 export const addwine = async (req, res) => {
 
 
-    let { name, company, type, modle, price, isLocallyMade, publishDate, imgUrl } = req.body;
+    let { name, company, type, modle, price, isLocallyMade, publishDate, imgUrl, story } = req.body;
     let validate = wineValidator(req.body);
     if (validate.error)
         return res.status(400).send(validate.error[0])
@@ -77,7 +77,7 @@ export const addwine = async (req, res) => {
         let samewines = await Wine.find({ name, type });
         if (samewines.length > 0)
             return res.status(409).send("כבר קיים יין בשם כזה עם אות סוג ")
-        let newwine = await Wine.create({ name, type, imgUrl, price, modle, company, isLocallyMade: isLocallyMade || true, publishDate })
+        let newwine = await Wine.create({ name, type, imgUrl, price, modle, company, isLocallyMade: isLocallyMade || true, publishDate, story })
         return res.status(201).json(newwine)
     }
     catch (err) {
@@ -105,6 +105,7 @@ export const updatewine = async (req, res) => {
         wineToUpdate.price = req.body.price || wineToUpdate.price;
         wineToUpdate.publishDate = req.body.publishDate || wineToUpdate.publishDate;
         wineToUpdate.isLocallyMade = req.body.isLocallyMade || wineToUpdate.isLocallyMade;
+        wineToUpdate.story = req.body.story || wineToUpdate.story;
 
 
         await wineToUpdate.save();
