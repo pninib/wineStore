@@ -14,7 +14,7 @@ export const addUser = async (req, res) => {
 
     try {
 
-        let user = await User.find({ userName, password, email })
+        let user = await User.find({ userName, password, email, roles })
         if (user.length > 0)
             return res.stutos(404).send("כבר קיים משתמש בשם וסיסמא אלו")
         const hashedPassword = await bcrypt.hash(password, 10);
