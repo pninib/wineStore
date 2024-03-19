@@ -29,7 +29,7 @@ export const addUser = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-    let { userName, email } = req.body
+    let { userName, email, roles } = req.body
     let userValidat = userValidator2(req.body)
     if (userValidat.error)
         return res.status(400).send(userValidat.error.message)
@@ -39,7 +39,7 @@ export const login = async (req, res) => {
         if (!user)
             return res.status(404).send("לא קיים משתמש עם כזה קוד")
         let token = generateToken(user)
-        res.json({userName ,email, token})
+        res.json({userName ,email, token, roles})
 
 
     }
