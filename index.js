@@ -6,7 +6,7 @@ import {erroHandling} from "./middlewares/errorHanding.js"
 import wineRouter from "./routs/wine.js";
 import userRouter from "./routs/user.js";
 import orderRouter from "./routs/order.js";  
-import nodemailerRouter from "./routs/nodeMailer.js";
+import {sendEmail} from "./routs/nodeMailer.js";
 config(); 
 connectToDB();
 
@@ -18,7 +18,7 @@ app.use(express.static('images'))
 app.use("/api/wines", wineRouter);
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
-app.use("/sendEmail", nodemailerRouter);
+app.use("/sendEmail", sendEmail);
 app.use(erroHandling);
 
 let port = process.env.PORT || 4000;
