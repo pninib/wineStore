@@ -17,7 +17,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// פונקציה לשליחת מייל
 const sendEmail = (toEmail, subject, htmlContent) => {
   const mailOptions = {
     from: 'pearly0242@gmail.com',
