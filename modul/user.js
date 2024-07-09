@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
     email: { type: String},
     password: { type: String },
     roles: {
-        type: String, default: roleTypes.ADMIN
+        type: String, default: roleTypes.USER
     },
 }, { timestamps: true });
 
