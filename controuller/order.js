@@ -20,7 +20,6 @@ export const getAllOrderes = async (req, res) => {
     }
 }
 
-//לשאול על היידי האוטומטי
 export const getOrderById = async (req, res) => {
     try {
 
@@ -59,7 +58,7 @@ export const addOrder = async (req, res) => {
     try {
         let sameorders = await Order.find({ orderCode, address });
         if (sameorders.length > 0)
-            return res.status(409).send("כבר קיימת הזמנה בשם כזה עם אות כתובת ")
+            return res.status(409).send("כבר קיימת הזמנה בשם כזה עם אותו כתובת ")
         let neworder = await Order.create({ orderDate, toDate, address, orderCode, product, isCare: isCare || false })
         return res.status(201).json(neworder)
     }

@@ -2,10 +2,11 @@ import cors from "cors";
 import express from "express";
 import { config } from "dotenv";
 import { connectToDB } from "./config/dbConfig.js";
+import {erroHandling} from "./middlewares/errorHanding.js"
 import wineRouter from "./routs/wine.js";
 import userRouter from "./routs/user.js";
-import {erroHandling} from "./middlewares/errorHanding.js"
 import orderRouter from "./routs/order.js";  
+import nodemailerRouter from "./routs/nodeMailer.js";
 config(); 
 connectToDB();
 
@@ -17,13 +18,8 @@ app.use(express.static('images'))
 app.use("/api/wines", wineRouter);
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
+app.use("/sendEmail", nodemailerRouter);
 app.use(erroHandling);
-
-// app.use((err, req, res, next) => {
-//     res.status(res.statusCode || 500);
-//     res.send(err.message || "התרחשה תקלה")
-// })
-
 
 let port = process.env.PORT || 4000;
 app.listen(port, () => {
