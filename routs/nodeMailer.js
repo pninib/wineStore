@@ -43,7 +43,6 @@ app.post('/sendEmail', (req, res) => {
     <p>Phone: ${phone}</p>
     <p>Address: ${address}</p>
   `;
-
   sendEmail(email, subject, htmlContent);
   res.send('Email sent successfully!');
 });
